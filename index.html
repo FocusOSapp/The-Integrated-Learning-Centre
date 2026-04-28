@@ -1063,6 +1063,13 @@
       align-items: stretch;
     }
 
+    .sticky-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: stretch;
+    }
+
     .topper-grid {
       grid-template-columns: repeat(3, minmax(240px, 1fr));
       justify-content: center;
@@ -1086,79 +1093,85 @@
       justify-content: center;
     }
 
-    .awards-carousel {
-      overflow: hidden;
-      width: 100%;
-      position: relative;
-      padding: 40px 0;
-      perspective: 1000px;
-      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    }
-
-    .awards-track {
-      display: flex;
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 32px;
-      animation: scrollAwards 40s linear infinite;
       padding: 20px 0;
-      transform-style: preserve-3d;
     }
 
-    .awards-track:hover {
-      animation-play-state: paused;
-    }
-
-    .award-item {
-      flex: 0 0 auto;
-      width: 220px;
-      height: 160px;
+    .award-card {
+      position: relative;
       background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: 20px;
-      padding: 15px;
+      padding: 16px;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      overflow: hidden;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: var(--shadow-subtle);
+      aspect-ratio: 4/3;
     }
 
-    .award-item img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      filter: grayscale(20%);
-      transition: filter 0.3s ease;
+    .award-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(109, 40, 217, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    .award-item:hover {
-      transform: scale(1.1) translateY(-10px);
-      background: white;
-      box-shadow: 0 20px 40px rgba(109, 40, 217, 0.15);
+    .award-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      background: rgba(255, 255, 255, 0.8);
       border-color: var(--purple);
+      box-shadow: 
+        0 20px 40px rgba(109, 40, 217, 0.1),
+        0 1px 2px rgba(109, 40, 217, 0.1);
     }
 
-    .award-item:hover img {
-      filter: grayscale(0%);
+    .award-card:hover::before {
+      opacity: 1;
     }
 
-    .award-item img {
+    .award-card img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       border-radius: 12px;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    @keyframes scrollAwards {
-      0% {
-        transform: translateX(0);
-      }
+    .award-card:hover img {
+      transform: scale(1.05);
+    }
 
-      100% {
-        transform: translateX(-50%);
-      }
+    .award-badge {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      background: var(--purple);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 16px rgba(109, 40, 217, 0.3);
+    }
+
+    .award-card:hover .award-badge {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .metric-card,
@@ -1751,18 +1764,28 @@
     }
 
     @media (max-width: 1080px) {
-
       .hero-grid,
       .approach-grid,
       .quote-panel,
       .contact-grid,
       .gallery-grid,
-      .faq-list {
-        grid-template-columns: 1fr;
+      .faq-list,
+      .sticky-gallery,
+      .awards-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .sticky-gallery {
+        gap: 40px !important;
+      }
+
+      .sticky-gallery > div {
+        position: static !important;
+        height: auto !important;
       }
 
       .hero-scene {
-        min-height: 650px;
+        min-height: 600px;
       }
 
       .scene-core {
@@ -1811,52 +1834,46 @@
       }
 
       .section {
-        padding: 56px 0;
+        padding: 48px 0;
       }
 
       .hero {
         margin-top: 0;
-        padding: 60px 0 40px;
+        padding: 40px 0 20px;
       }
 
       .hero-scene {
-        min-height: 400px;
-        padding: 20px 16px;
+        min-height: auto;
+        padding: 40px 16px;
+        margin-bottom: 20px;
       }
 
       .scene-core {
-        width: calc(100% - 24px);
+        width: 100%;
+        transform: none !important;
       }
 
       .hero-title {
-        font-size: clamp(36px, 7vw, 80px);
+        font-size: clamp(32px, 9vw, 48px) !important;
+        line-height: 1.1;
       }
 
       .section-title {
-        font-size: clamp(28px, 5.5vw, 48px);
+        font-size: clamp(26px, 7vw, 40px) !important;
+        margin-bottom: 12px !important;
       }
 
       .periodic-card {
-        width: 84px;
+        width: 70px;
+        height: 70px;
       }
 
       .periodic-card strong {
-        font-size: 32px;
+        font-size: 24px;
       }
 
-      .glass-bulb {
-        width: 145px;
-        height: 145px;
-      }
-
-      .flask {
-        width: 132px;
-        height: 176px;
-      }
-
-      .tube {
-        width: 164px;
-        height: 28px;
+      .glass-bulb, .flask, .tube {
+        display: none !important; /* Hide complex 3D-like elements on small mobile to prevent overlap */
       }
 
       .scene-element.hide-mobile {
@@ -1871,24 +1888,32 @@
       .board-grid,
       .track-grid,
       .gallery-grid,
+      .awards-grid,
       .contact-actions {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      .faculty-card {
+        max-width: 100% !important;
       }
 
       .hero-actions,
       .contact-actions {
         flex-direction: column;
+        gap: 12px;
       }
 
       .hero-actions .btn,
       .btn {
         width: 100%;
         min-width: unset;
+        justify-content: center;
       }
 
       .hero-panel-grid,
       .track-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
       }
 
       .mobile-cta {
@@ -1899,16 +1924,15 @@
         padding-bottom: 80px;
       }
 
-      .metric-card,
-      .award-item {
-        width: 120px;
-        height: 100px;
-        padding: 8px;
-        border-radius: 14px;
+      .metric-card {
+        width: 100%;
+        height: auto;
+        padding: 20px;
       }
 
-      .award-item img {
-        border-radius: 10px;
+      .award-card {
+        aspect-ratio: auto;
+        height: 200px;
       }
 
       .cta-card,
@@ -1917,7 +1941,7 @@
       .gallery-card,
       .faq-item,
       .topper-card {
-        padding: 20px;
+        padding: 24px;
       }
 
       .icon-shell {
@@ -1926,21 +1950,22 @@
       }
 
       .avatar-wrap {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
       }
 
       .contact-panel {
-        padding: 4px 0;
+        padding: 0;
       }
 
       .map-shell {
         padding: 0;
-        min-height: 400px;
+        min-height: 300px;
+        border-radius: 20px;
       }
 
       .map-shell iframe {
-        min-height: 400px;
+        min-height: 300px;
       }
     }
 
@@ -2709,7 +2734,7 @@
           </div>
           <div class="reveal" style="display:flex; justify-content:center;">
             <div class="neu" style="padding:20px; border-radius:24px; max-width:900px;">
-              <img src="feedback1_blurred.png" alt="Student Feedback" style="width:100%; border-radius:16px; display:block;">
+              <img src="feedback1_blurred.png" alt="Student Feedback" style="width:100%; border-radius:16px; display:block;" loading="lazy">
             </div>
           </div>
         </div>
@@ -2731,7 +2756,7 @@
                 <div style="position:relative;">
                   <div class="avatar-wrap neu-inset"
                     style="width:200px; height:200px; margin-bottom:32px; border: 4px solid rgba(109, 40, 217, 0.1);">
-                    <img class="avatar" src="sanjay.png"
+                    <img class="avatar" src="sanjay.png" loading="lazy"
                       alt="Mr. Sanjay Sir - Senior Physics & Chemistry Faculty in Gurgaon">
                   </div>
                   <div
@@ -2784,7 +2809,7 @@
                 <div style="position:relative;">
                   <div class="avatar-wrap neu-inset"
                     style="width:200px; height:200px; margin-bottom:32px; border: 4px solid rgba(109, 40, 217, 0.1);">
-                    <img class="avatar" src="rajesh.png" alt="Er. Rajesh Yadav - Senior Physics Faculty in Gurgaon">
+                    <img class="avatar" src="rajesh.png" alt="Er. Rajesh Yadav - Senior Physics Faculty in Gurgaon" loading="lazy">
                   </div>
                   <div
                     style="position:absolute; bottom:20px; right:0; background:var(--blue); color:white; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; box-shadow:0 8px 16px rgba(37,99,235,0.3);">
@@ -2849,7 +2874,7 @@
             <!-- Saksham 1 -->
             <div class="topper-card neu reveal">
               <div class="avatar-wrap neu-inset" style="margin-bottom:24px; position:relative;">
-                <img class="avatar" src="saksham1.png" alt="Saksham Topper IIT Madras">
+                <img class="avatar" src="saksham1.png" alt="Saksham Topper IIT Madras" loading="lazy">
                 <div
                   style="position:absolute; top:-10px; right:-10px; background:var(--purple); color:white; padding:4px 10px; border-radius:12px; font-size:10px; font-weight:900;">
                   IIT MADRAS</div>
@@ -2864,7 +2889,7 @@
             <!-- Manya -->
             <div class="topper-card neu reveal">
               <div class="avatar-wrap neu-inset" style="margin-bottom:24px; position:relative;">
-                <img class="avatar" src="manya.png" alt="Manya Topper IIT Delhi">
+                <img class="avatar" src="manya.png" alt="Manya Topper IIT Delhi" loading="lazy">
                 <div
                   style="position:absolute; top:-10px; right:-10px; background:var(--purple); color:white; padding:4px 10px; border-radius:12px; font-size:10px; font-weight:900;">
                   IIT DELHI (CS)</div>
@@ -2879,7 +2904,7 @@
             <!-- Saksham 2 -->
             <div class="topper-card neu reveal">
               <div class="avatar-wrap neu-inset" style="margin-bottom:24px; position:relative;">
-                <img class="avatar" src="saksham2.png" alt="Saksham Topper MAMC">
+                <img class="avatar" src="saksham2.png" alt="Saksham Topper MAMC" loading="lazy">
                 <div
                   style="position:absolute; top:-10px; right:-10px; background:var(--orange); color:white; padding:4px 10px; border-radius:12px; font-size:10px; font-weight:900;">
                   MAMC DELHI</div>
@@ -2894,7 +2919,7 @@
             <!-- Arvin -->
             <div class="topper-card neu reveal">
               <div class="avatar-wrap neu-inset" style="margin-bottom:24px; position:relative;">
-                <img class="avatar" src="arvinmadhok.png.jpeg" alt="Arvin Topper NIT">
+                <img class="avatar" src="arvinmadhok.png.jpeg" alt="Arvin Topper NIT" loading="lazy">
                 <div
                   style="position:absolute; top:-10px; right:-10px; background:var(--blue); color:white; padding:4px 10px; border-radius:12px; font-size:10px; font-weight:900;">
                   NIT KKR (CS)</div>
@@ -2909,7 +2934,7 @@
             <!-- Mridul -->
             <div class="topper-card neu reveal">
               <div class="avatar-wrap neu-inset" style="margin-bottom:24px; position:relative;">
-                <img class="avatar" src="mridul.png" alt="Mridul Topper BITS">
+                <img class="avatar" src="mridul.png" alt="Mridul Topper BITS" loading="lazy">
                 <div
                   style="position:absolute; top:-10px; right:-10px; background:var(--blue); color:white; padding:4px 10px; border-radius:12px; font-size:10px; font-weight:900;">
                   BITS PILANI</div>
@@ -2924,7 +2949,7 @@
             <!-- Rabani -->
             <div class="topper-card neu reveal">
               <div class="avatar-wrap neu-inset" style="margin-bottom:24px; position:relative;">
-                <img class="avatar" src="rabani.png" alt="Rabani Topper Board" style="object-position: center 15%;">
+                <img class="avatar" src="rabani.png" alt="Rabani Topper Board" style="object-position: center 15%;" loading="lazy">
                 <div
                   style="position:absolute; top:-10px; right:-10px; background:var(--green); color:white; padding:4px 10px; border-radius:12px; font-size:10px; font-weight:900;">
                   BOARD TOPPER</div>
@@ -2941,8 +2966,7 @@
 
       <section id="gallery" class="section">
         <div class="container">
-          <div class="sticky-gallery reveal"
-            style="display:grid; grid-template-columns:1fr 1.2fr; gap:80px; align-items:stretch;">
+          <div class="sticky-gallery reveal">
             <!-- Left sticky panel -->
             <div
               style="position:sticky; top:100px; height:calc(100vh - 200px); display:flex; flex-direction:column; justify-content:center;">
@@ -2987,7 +3011,7 @@
             <div class="scroll-stack" style="display:flex; flex-direction:column; gap:80px; padding:80px 0;">
               <div class="gallery-card neu"
                 style="padding:16px; position:relative; overflow:hidden; border-radius:24px;">
-                <img src="furniture.jpg" style="border-radius:18px; width:100%; display:block;" alt="Classroom">
+                <img src="furniture.jpg" style="border-radius:18px; width:100%; display:block;" alt="Classroom" loading="lazy">
                 <div
                   style="position:absolute; bottom:40px; left:40px; color:white; text-shadow:0 10px 30px rgba(0,0,0,0.6);">
                   <h3 style="font-size:32px; margin:0; color:white;">01. Focused Space</h3>
@@ -3020,75 +3044,50 @@
             <h2 class="section-title heading">Awards & Achievements</h2>
           </div>
 
-          <div class="awards-carousel">
-            <div class="awards-track">
-              <div class="award-item neu-soft">
-                <img src="award1.png" alt="Award 1">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award2.png" alt="Award 2">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award3.png" alt="Award 3">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award4.png" alt="Award 4">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award5.png" alt="Award 5">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award6.png" alt="Award 6">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award7.png" alt="Award 7">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award8.png" alt="Award 8">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award9.png" alt="Award 9">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award10.png" alt="Award 10">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award11.png.jpeg" alt="Award 11">
-              </div>
-              <!-- Duplicate for seamless loop -->
-              <div class="award-item neu-soft">
-                <img src="award1.png" alt="Award 1">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award2.png" alt="Award 2">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award3.png" alt="Award 3">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award4.png" alt="Award 4">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award5.png" alt="Award 5">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award6.png" alt="Award 6">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award7.png" alt="Award 7">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award8.png" alt="Award 8">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award9.png" alt="Award 9">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award10.png" alt="Award 10">
-              </div>
-              <div class="award-item neu-soft">
-                <img src="award11.png.jpeg" alt="Award 11">
-              </div>
+          <div class="awards-grid">
+            <div class="award-card reveal">
+              <img src="award1.png" alt="Excellence Award" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.1s;">
+              <img src="award2.png" alt="Physics Recognition" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.2s;">
+              <img src="award3.png" alt="Chemistry Mastery" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.3s;">
+              <img src="award4.png" alt="Academic Distinction" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.4s;">
+              <img src="award5.png" alt="Innovation in Teaching" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.1s;">
+              <img src="award6.png" alt="Subject Expert Award" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.2s;">
+              <img src="award7.png" alt="Best Faculty" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.3s;">
+              <img src="award8.png" alt="Institutional Achievement" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.4s;">
+              <img src="award9.png" alt="Global Educator Recognition" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.1s;">
+              <img src="award10.png" alt="Outstanding Result Award" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
+            </div>
+            <div class="award-card reveal" style="transition-delay: 0.2s;">
+              <img src="award11.png.jpeg" alt="Recent Achievement" loading="lazy">
+              <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
             </div>
           </div>
         </div>
