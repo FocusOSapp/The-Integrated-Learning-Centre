@@ -1817,6 +1817,29 @@
       .mobile-menu-btn {
         display: flex;
       }
+
+      /* Force curriculum tab inner grids to stack on tablets */
+      .special-large > div[style],
+      .tab-content .special-large > div[style] {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+      }
+
+      /* Fix the approach grid */
+      .approach-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Gallery sticky layout */
+      .sticky-gallery {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+      }
+
+      .sticky-gallery > div[style] {
+        position: static !important;
+        height: auto !important;
+      }
     }
 
     @media (max-width: 720px) {
@@ -1966,6 +1989,88 @@
 
       .map-shell iframe {
         min-height: 300px;
+      }
+
+      /* Force ALL inline-styled grids inside curriculum tabs to stack */
+      .special-large > div,
+      .tab-content > .special-large > div,
+      .tab-content .special-large > div[style] {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+      }
+
+      /* Fix the checklist grids inside curriculum tabs */
+      .special-large ul[style] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Fix the course finder grid */
+      .course-finder {
+        grid-template-columns: 1fr !important;
+        padding: 24px !important;
+      }
+
+      /* Fix headings inside tabs that are too large */
+      .special-large h3 {
+        font-size: 24px !important;
+      }
+
+      .special-large .body-copy,
+      .special-large p {
+        font-size: 15px !important;
+      }
+
+      /* Faculty card padding fix */
+      .faculty-card {
+        padding: 24px !important;
+      }
+
+      .faculty-card h3 {
+        font-size: 24px !important;
+      }
+
+      /* Award cards - remove fixed aspect ratio, use auto height */
+      .award-card {
+        aspect-ratio: auto !important;
+        min-height: 200px;
+        padding: 12px !important;
+      }
+
+      /* Topper cards */
+      .topper-card {
+        text-align: center;
+      }
+
+      /* Fix the sticky gallery to not use sticky on mobile */
+      .sticky-gallery > div[style] {
+        position: static !important;
+        height: auto !important;
+      }
+
+      .scroll-stack {
+        gap: 24px !important;
+        padding: 24px 0 !important;
+      }
+
+      /* Neu hover - disable scale on mobile to prevent overflow */
+      .neu:hover,
+      .neu-soft:hover {
+        transform: translateY(-4px) !important;
+      }
+
+      /* Container tighter padding on mobile */
+      .container {
+        width: calc(100% - 32px) !important;
+      }
+
+      /* Contact grid padding */
+      .contact-grid {
+        padding: 24px !important;
+      }
+
+      /* Quote panel */
+      .quote-panel {
+        padding: 32px 20px !important;
       }
     }
 
