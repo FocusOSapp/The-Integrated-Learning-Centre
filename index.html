@@ -1847,7 +1847,9 @@
         display: flex !important;
         left: 20px !important;
         right: auto !important;
-        bottom: 80px !important; /* Above the sticky CTA bar */
+        bottom: 20px !important;
+        position: fixed !important;
+        z-index: 10000 !important;
       }
 
       .navbar {
@@ -1962,12 +1964,10 @@
         grid-template-columns: 1fr !important;
       }
 
-      .mobile-cta {
-        display: grid;
-      }
+
 
       body {
-        padding-bottom: 100px; /* Extra space for the fixed mobile CTA bar */
+        padding-bottom: 0 !important;
       }
 
       .metric-card {
@@ -3365,12 +3365,7 @@
       </div>
     </footer>
 
-    <div class="mobile-cta neu-soft">
-      <a href="#contact" class="btn btn-primary">Book Demo<div class="btn-icon-circle"><i data-lucide="arrow-right"></i>
-        </div></a>
-      <a href="https://wa.me/919811385437?text=Hi,%20I'd%20like%20to%20know%20more%20about%20The%20Integrated%20Learning%20Centre"
-        target="_blank" rel="noreferrer" class="btn btn-secondary">WhatsApp</a>
-    </div>
+
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/919811385437?text=Hi,%20I'd%20like%20to%20know%20more%20about%20The%20Integrated%20Learning%20Centre"
