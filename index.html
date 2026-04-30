@@ -1057,6 +1057,12 @@
       align-items: stretch;
     }
 
+    .faculty-card h3 {
+      font-weight: 900 !important;
+      font-family: 'Sora', sans-serif;
+      color: #111827;
+    }
+
     .gallery-grid {
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
@@ -1662,15 +1668,18 @@
     }
 
     .map-shell {
-      padding: 16px;
+      padding: 0;
+      overflow: hidden;
       min-height: 520px;
     }
 
     .map-shell iframe {
       width: 100%;
+      height: 100%;
       min-height: 488px;
       border: 0;
       border-radius: 22px;
+      display: block;
     }
 
     .footer {
@@ -1770,8 +1779,7 @@
       .contact-grid,
       .gallery-grid,
       .faq-list,
-      .sticky-gallery,
-      .awards-grid {
+      .sticky-gallery {
         grid-template-columns: 1fr !important;
       }
 
@@ -1928,7 +1936,6 @@
       .board-grid,
       .track-grid,
       .gallery-grid,
-      .awards-grid,
       .contact-actions {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
@@ -1978,8 +1985,6 @@
 
       .award-card {
         aspect-ratio: 16/10 !important;
-        height: auto !important;
-        padding: 0 !important;
       }
 
       .cta-card,
@@ -2053,9 +2058,9 @@
         font-size: 24px !important;
       }
 
-      /* Award cards on mobile */
-      .award-card {
-        padding: 10px !important;
+      .faculty-role {
+        font-size: 13px !important;
+        letter-spacing: 0.1em !important;
       }
 
       /* Topper cards */
@@ -2130,8 +2135,8 @@
       }
 
       .kicker {
-        font-size: 9px;
-        letter-spacing: 0.24em;
+        font-size: 10px;
+        letter-spacing: 0.2em;
       }
 
       .card-title {
@@ -2731,6 +2736,11 @@
               <div style="font-size:24px; font-weight:900; color:var(--blue); margin-bottom:8px;">Dropper</div>
               <p style="font-size:12px; opacity:0.6;">Intensive Rank Prep</p>
             </div>
+            <div class="finder-option neu-inset" onclick="showPath('icse')"
+              style="padding:24px; cursor:pointer; text-align:center; transition:0.3s;">
+              <div style="font-size:24px; font-weight:900; color:var(--green); margin-bottom:8px;">ICSE Foundation</div>
+              <p style="font-size:12px; opacity:0.6;">Batch</p>
+            </div>
           </div>
 
           <div class="reveal" style="text-align:center;margin-bottom:64px;">
@@ -2740,9 +2750,10 @@
 
           <!-- Tabbed Interface -->
           <div class="curriculum-tabs reveal"
-            style="display:flex; justify-content:center; gap:12px; margin-bottom:48px;">
+            style="display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-bottom:48px;">
             <button class="tab-btn active" onclick="switchTab('intensive')">JEE / NEET</button>
             <button class="tab-btn" onclick="switchTab('boards')">Boards & School</button>
+            <button class="tab-btn" onclick="switchTab('foundation')">ICSE Foundation</button>
           </div>
 
           <div id="tab-intensive" class="tab-content active reveal">
@@ -2805,6 +2816,38 @@
                   </div>
                   <div style="font-size:32px; font-weight:900; margin-bottom:8px;">Class XI - XII</div>
                   <p style="font-size:14px; opacity:0.7;">Foundation & Boards Bridge</p>
+                  <a href="#contact" class="btn btn-primary" style="margin-top:20px; width:100%;">Reserve Spot<div
+                      class="btn-icon-circle"><i data-lucide="arrow-right"></i></div></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-foundation" class="tab-content reveal">
+            <div class="special-large neu" style="width:100%;">
+              <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:48px; align-items:center;">
+                <div>
+                  <div class="icon-shell neu-inset"><i data-lucide="microscope"
+                      style="width:28px;height:28px;color:var(--green);"></i></div>
+                  <h3 style="font-size:36px; margin:24px 0;">Early Advantage</h3>
+                  <p class="body-copy" style="font-size:18px;">Build a rock-solid scientific temperament from Class 9. Our ICSE Foundation course bridges the gap between middle school science and high-level competitive physics and chemistry.</p>
+                  <ul
+                    style="list-style:none; padding:0; margin:24px 0; display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                    <li style="display:flex; align-items:center; gap:10px;"><i data-lucide="star"
+                        style="width:18px; color:var(--green);"></i> ICSE Curriculum Focus</li>
+                    <li style="display:flex; align-items:center; gap:10px;"><i data-lucide="star"
+                        style="width:18px; color:var(--green);"></i> Conceptual Depth</li>
+                    <li style="display:flex; align-items:center; gap:10px;"><i data-lucide="star"
+                        style="width:18px; color:var(--green);"></i> Analytical Thinking</li>
+                    <li style="display:flex; align-items:center; gap:10px;"><i data-lucide="star"
+                        style="width:18px; color:var(--green);"></i> Early JEE/NEET Prep</li>
+                  </ul>
+                </div>
+                <div class="neu-inset" style="padding:32px; border-radius:var(--radius-lg); text-align:center;">
+                  <div style="font-size:12px; font-weight:800; color:var(--green); margin-bottom:12px;">CURRICULUM
+                  </div>
+                  <div style="font-size:28px; font-weight:900; margin-bottom:8px;">ICSE Foundation Batch</div>
+                  <p style="font-size:14px; opacity:0.7;">Physics & Chemistry</p>
                   <a href="#contact" class="btn btn-primary" style="margin-top:20px; width:100%;">Reserve Spot<div
                       class="btn-icon-circle"><i data-lucide="arrow-right"></i></div></a>
                 </div>
@@ -2884,7 +2927,7 @@
                   <div class="avatar-wrap neu-inset"
                     style="width:200px; height:200px; margin-bottom:32px; border: 4px solid rgba(109, 40, 217, 0.1);">
                     <img class="avatar" src="sanjay.png" loading="lazy"
-                      alt="Mr. Sanjay Sir - Senior Physics & Chemistry Faculty in Gurgaon">
+                      alt="Mr. Sanjay Sir - Senior Chemistry Faculty in Gurgaon">
                   </div>
                   <div
                     style="position:absolute; bottom:20px; right:0; background:var(--purple); color:white; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; box-shadow:0 8px 16px rgba(109,40,217,0.3);">
@@ -2893,10 +2936,9 @@
 
                 <h3 style="font-size:32px; margin-bottom:8px;">Mr. Sanjay Sir</h3>
                 <div class="faculty-role"
-                  style="font-size:16px; font-weight:800; letter-spacing:0.15em; margin-bottom:24px;">CHIEF MENTOR |
-                  PHYSICS & CHEMISTRY HEAD</div>
+                  style="font-size:16px; font-weight:800; letter-spacing:0.15em; margin-bottom:24px;">CHIEF MENTOR | CHEMISTRY HEAD</div>
 
-                <div style="display:flex; justify-content:center; gap:10px; margin-bottom:24px;">
+                <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-bottom:24px;">
                   <span
                     style="background:rgba(109,40,217,0.05); color:var(--purple); padding:6px 12px; border-radius:8px; font-size:12px; font-weight:700;">JEE
                     Specialist</span>
@@ -2909,7 +2951,7 @@
                 </div>
 
                 <p class="body-copy" style="font-size:16px; line-height:1.8; color:#4b5563; max-width:400px;">With over
-                  <strong>18+ years</strong> of dedicated Physics & Chemistry teaching experience, Mr. Sanjay has
+                  <strong>18+ years</strong> of dedicated Chemistry teaching experience, Mr. Sanjay has
                   pioneered a structured conceptual approach that has converted hundreds of students into top rankers at
                   IITs and Medical Colleges nationwide. Also he's taught at vmc for many years.</p>
               </div>
@@ -2948,7 +2990,7 @@
                   style="font-size:16px; font-weight:800; letter-spacing:0.15em; margin-bottom:24px;">SENIOR PHYSICS
                   FACULTY | B. TECH IIT BHU</div>
 
-                <div style="display:flex; justify-content:center; gap:10px; margin-bottom:24px;">
+                <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-bottom:24px;">
                   <span
                     style="background:rgba(37,99,235,0.05); color:var(--blue); padding:6px 12px; border-radius:8px; font-size:12px; font-weight:700;">IIT
                     BHU Alumnus</span>
@@ -2966,6 +3008,51 @@
                   exam aspirants.
 
                 </p>
+              </div>
+
+              <div
+                style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.05); width:100%; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                <div style="text-align:left;">
+                  <div
+                    style="font-size:10px; color:#94a3b8; font-weight:800; text-transform:uppercase; letter-spacing:0.1em;">
+                    Subject Expertise</div>
+                  <div style="font-size:20px; font-weight:900; color:var(--blue);">Physics</div>
+                </div>
+                <div style="text-align:right;">
+                  <div
+                    style="font-size:10px; color:#94a3b8; font-weight:800; text-transform:uppercase; letter-spacing:0.1em;">
+                    Core Focus</div>
+                  <div style="font-size:20px; font-weight:900; color:var(--orange);">JEE & NEET</div>
+                </div>
+              </div>
+            </div>
+            <div class="faculty-card neu reveal"
+              style="max-width:500px; padding:48px; display: flex; flex-direction: column; justify-content: space-between; flex: 1;">
+              <div class="faculty-card-content">
+                <div style="position:relative;">
+                  <div class="avatar-wrap neu-inset"
+                    style="width:200px; height:200px; margin-bottom:32px; border: 4px solid rgba(109, 40, 217, 0.1);">
+                    <img class="avatar" src="tabish.png" alt="Tabish sir - Physics Faculty" loading="lazy">
+                  </div>
+                  <div
+                    style="position:absolute; bottom:20px; right:0; background:var(--orange); color:white; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; box-shadow:0 8px 16px rgba(249,115,22,0.3);">
+                    Senior Mentor</div>
+                </div>
+
+                <h3 style="font-size:32px; margin-bottom:8px;">Tabish sir</h3>
+                <div class="faculty-role"
+                  style="font-size:16px; font-weight:800; letter-spacing:0.15em; margin-bottom:24px;">PHYSICS FACULTY | EX FACULTY AAKASH</div>
+
+                <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-bottom:24px;">
+                  <span
+                    style="background:rgba(249,115,22,0.05); color:var(--orange); padding:6px 12px; border-radius:8px; font-size:12px; font-weight:700;">Ex Aakash</span>
+                  <span
+                    style="background:rgba(109,40,217,0.1); color:var(--purple); padding:6px 12px; border-radius:8px; font-size:12px; font-weight:700;">Physics Expert</span>
+                  <span
+                    style="background:rgba(72,187,120,0.1); color:var(--green); padding:6px 12px; border-radius:8px; font-size:12px; font-weight:700;">15+ Yrs Exp</span>
+                </div>
+
+                <p class="body-copy" style="font-size:16px; line-height:1.8; color:#4b5563; max-width:400px;">With over <strong>15+ years</strong> of dedicated Physics teaching experience, Tabish sir is an Ex faculty at Aakash Institute. He brings immense expertise in guiding and mentoring students for highly competitive exams like JEE and NEET.</p>
               </div>
 
               <div
@@ -3185,11 +3272,11 @@
               <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
             </div>
             <div class="award-card reveal" style="transition-delay: 0.3s;">
-              <img src="award4.png" alt="Academic Distinction" loading="lazy">
+              <img src="award4.png" alt="Academic Distinction" loading="lazy" style="object-position: top;">
               <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
             </div>
             <div class="award-card reveal" style="transition-delay: 0.4s;">
-              <img src="award5.png" alt="Innovation in Teaching" loading="lazy">
+              <img src="award5.png" alt="Innovation in Teaching" loading="lazy" style="object-position: top;">
               <div class="award-badge"><i data-lucide="award" style="width:18px;height:18px;"></i></div>
             </div>
             <div class="award-card reveal" style="transition-delay: 0.1s;">
@@ -3424,19 +3511,16 @@
             {
               opacity: 0,
               y: 40,
-              scale: 0.95,
-
             },
             {
               opacity: 1,
               y: 0,
-              scale: 1,
-
-              duration: 1.5,
-              ease: 'power4.out',
+              duration: 1.2,
+              ease: 'power3.out',
+              force3D: true,
               scrollTrigger: {
                 trigger: element,
-                start: 'top 95%',
+                start: 'top 90%',
                 toggleActions: 'play none none reverse'
               }
             }
@@ -3543,7 +3627,7 @@
             gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1, ease: 'power2.out' });
             gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.5, ease: 'power3.out' });
           });
-          document.querySelectorAll('a, button, .bento-card, .btn').forEach(el => {
+          document.querySelectorAll('a, button, .bento-card, .btn, .finder-option, .faculty-card, .award-card, .topper-card, .metric-card').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
           });
@@ -3574,6 +3658,39 @@
           });
         });
 
+        // 3D Magnetic Tilt for Cards
+        document.querySelectorAll('.neu, .neu-inset, .award-card').forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 1080) return;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
+
+            gsap.to(card, {
+              rotateX: rotateX,
+              rotateY: rotateY,
+              transformPerspective: 1000,
+              ease: 'power2.out',
+              duration: 0.4
+            });
+          });
+
+          card.addEventListener('mouseleave', () => {
+            if (window.innerWidth < 1080) return;
+            gsap.to(card, {
+              rotateX: 0,
+              rotateY: 0,
+              ease: 'elastic.out(1, 0.4)',
+              duration: 1.2
+            });
+          });
+        });
+
         // Course Finder Logic
         function showPath(grade) {
           document.querySelectorAll('.finder-option').forEach(opt => opt.style.boxShadow = 'var(--shadow-inset)');
@@ -3582,6 +3699,8 @@
           // Auto-switch tabs based on grade
           if (grade === '11th' || grade === 'boards') {
             switchTab('boards');
+          } else if (grade === 'icse') {
+            switchTab('foundation');
           } else {
             switchTab('intensive');
           }
@@ -3646,8 +3765,10 @@
           gsap.to(div, {
             y: -400 - Math.random() * 400,
             opacity: 0,
-            x: (Math.random() - 0.5) * 200,
-            duration: 4 + Math.random() * 4,
+            x: (Math.random() - 0.5) * 300,
+            rotation: (Math.random() - 0.5) * 360,
+            scale: Math.random() * 1.5 + 0.5,
+            duration: 5 + Math.random() * 5,
             ease: 'power1.out',
             onComplete: () => div.remove()
           });
@@ -3726,11 +3847,13 @@
           for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
           function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-              p.update();
-              p.draw();
-            });
+            if (window.innerWidth > 720) {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              particles.forEach(p => {
+                p.update();
+                p.draw();
+              });
+            }
             requestAnimationFrame(animate);
           }
           animate();
